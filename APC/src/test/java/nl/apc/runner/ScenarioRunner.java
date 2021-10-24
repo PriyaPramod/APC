@@ -22,10 +22,11 @@ public class ScenarioRunner extends AbstractTestNGCucumberTests{
 	@BeforeClass
 	@Parameters({ "Environment" })
 	public void beforeClass(@Optional("api") String Environment) {
+		Helper.setProperty(Environment);
 		Helper.addSystemInfo();
 		if (Environment.equalsIgnoreCase("Mobile")) {
 			appiumServer = new AppiumServer();
-			//appiumServer.startAppiumServer();
+			appiumServer.startAppiumServer();
 			System.out.println("Started Appium server. ");
 		}
 	}
@@ -34,7 +35,7 @@ public class ScenarioRunner extends AbstractTestNGCucumberTests{
 	@Parameters({ "Environment" })
 	public void afterClass(@Optional("api") String Environment) {
 		if (Environment.equalsIgnoreCase("Mobile")) {
-			//appiumServer.stopAppiumServer();
+			appiumServer.stopAppiumServer();
 			System.out.println("Stopped Appium server. ");
 		}
 	}

@@ -111,6 +111,23 @@ The tech stack used for developing this framework are:
 	###ReadMe.md - Details about Cucumber Based Appium Automation Framework
 
 
+**Very Very Important: We need select test section in testNg.XML based on what we need to execute, for example If I want to run API mobile tests, then comment the API test or vica versa.** 
+
+	<!--<test thread-count="5" name="APITest">
+		<parameter name="Environment" value="API"></parameter>
+		<classes>
+			<class name="nl.apc.runner.ScenarioRunner" />
+		</classes>
+	</test>
+	 -->
+	
+	<test thread-count="5" name="AndroidTest">
+		<parameter name="Environment" value="mobile"></parameter>
+		<classes>
+			<class name="nl.apc.runner.ScenarioRunner" />
+		</classes>
+	</test>
+
 
 
 

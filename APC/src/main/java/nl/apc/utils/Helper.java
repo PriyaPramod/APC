@@ -1,10 +1,13 @@
 package nl.apc.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
@@ -42,19 +45,24 @@ public class Helper {
 	public static int getRandomInt(int startRange, int endRange) {
 		return RandomUtils.nextInt(startRange, endRange);
 	}
-
-	/*public static byte[] getByteScreenshot(WebDriver driver) {
-		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		byte[] fileContent = new byte[0];
+	
+	public static void setProperty(String environmentValue) {
+		Properties property = new Properties();
+		FileOutputStream output;
 		try {
-			fileContent = FileUtils.readFileToByteArray(src);
-		} catch (IOException e) {
+			output = new FileOutputStream(IConstants.EnvPath);
+			property.setProperty("Environment", environmentValue);
+			try {
+				property.store(output, "");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return fileContent;
 	}
-	*/
-
 	public static String generateRandomString(int length) {
 		StringBuilder returnValue = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
